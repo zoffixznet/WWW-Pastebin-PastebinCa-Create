@@ -1,5 +1,8 @@
 Revision history for WWW-Pastebin-PastebinCa-Create
 
+0.005   2026-07-12
+        - Updated for the rebuilt pastebin.ca API
+
 0.002   2013-11-25
         - Stopped using deprecated Class::Data::Accessor
         - Got rid of "Use of qw(..." warning

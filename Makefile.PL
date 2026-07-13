@@ -7,7 +7,10 @@ WriteMakefile
   'VERSION_FROM' => 'lib/WWW/Pastebin/PastebinCa/Create.pm',
   'PREREQ_PM' => {
                    'Carp' => '1.04',
+                   'Digest::SHA' => 0,
+                   'JSON::PP' => 0,
                    'Test::More' => 0,
+                   'Test::RequiresInternet' => 0,
                    'URI' => '1.35',
                    'WWW::Mechanize' => '1.34',
                    'overload' => '1.04'
