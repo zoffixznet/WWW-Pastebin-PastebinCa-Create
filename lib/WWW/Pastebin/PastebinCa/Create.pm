@@ -3,7 +3,8 @@ package WWW::Pastebin::PastebinCa::Create;
 use warnings;
 use strict;
 
-our $VERSION = '0.005';
+# VERSION
+
 use Carp;
 use URI;
 use WWW::Mechanize;
@@ -296,11 +297,15 @@ __END__
 
 =encoding utf8
 
+=for stopwords desc pastebin Turnstile ktnx
+
 =head1 NAME
 
 WWW::Pastebin::PastebinCa::Create - create new pastes on http://pastebin.ca/ from Perl
 
-=head1 SYNOPSYS
+=head1 SYNOPSIS
+
+=for pod_spiffy start code section
 
     use strict;
     use warnings;
@@ -313,6 +318,8 @@ WWW::Pastebin::PastebinCa::Create - create new pastes on http://pastebin.ca/ fro
         or die $paster->error;
 
     print "Your paste can be found on $paster\n";
+
+=for pod_spiffy end code section
 
 =head1 DESCRIPTION
 
@@ -332,6 +339,8 @@ below).
 
 =head2 new
 
+=for pod_spiffy in key value | out object
+
     my $paster = WWW::Pastebin::PastebinCa::Create->new;
 
     my $paster = WWW::Pastebin::PastebinCa::Create->new( timeout => 10 );
@@ -345,6 +354,8 @@ I<optional> arguments which are as follows:
 
 =head3 timeout
 
+=for pod_spiffy in scalar
+
     my $paster = WWW::Pastebin::PastebinCa::Create->new( timeout => 10 );
 
 Takes a scalar as a value which is the value that will be passed to
@@ -352,6 +363,8 @@ the L<WWW::Mechanize> object to indicate connection timeout in seconds.
 B<Defaults to:> C<30> seconds
 
 =head3 mech
+
+=for pod_spiffy in object
 
     my $paster = WWW::Pastebin::PastebinCa::Create->new(
         mech => WWW::Mechanize->new( agent => '007', timeout => 10 ),
@@ -366,6 +379,8 @@ as well as C<agent> argument is set to mimic FireFox.
 =head1 METHODS
 
 =head2 paste
+
+=for pod_spiffy in scalar | out object
 
     my $uri = $paster->paste('some long text')
         or die $paster->error;
@@ -496,6 +511,8 @@ backwards compatibility but has no effect.
 
 =head2 error
 
+=for pod_spiffy in scalar optional | out scalar
+
     my $uri = $paster->paste('some long text')
         or die $paster->error;
 
@@ -506,6 +523,8 @@ method. Takes no arguments, returns an error message explaining why
 C<paste()> failed.
 
 =head2 paste_uri
+
+=for pod_spiffy in no args | out object
 
     my $paste_uri = $paster->paste_uri;
 
@@ -518,15 +537,19 @@ in a string to obtain the URI of newly created paste.
 
 =head2 valid_langs
 
+=for pod_spiffy in no args | out key value
+
     my %valid_lang_codes_and_descriptions = $paster->valid_langs;
     use Data::Dumper;
     print Dumper \%valid_lang_codes_and_descriptions;
 
-Takes no arguments. Returns a flatened hash of valid language codes
+Takes no arguments. Returns a flattened hash of valid language codes
 to use in C<lang> argument to C<paste()> method as keys and the language
 descriptions as values.
 
 =head2 valid_expires
+
+=for pod_spiffy in no args | out list
 
     print "'$_' is a valid expire value\n"
         for $paster->valid_expires;
@@ -535,6 +558,8 @@ Takes no arguments. Returns a list of valid values for C<expire> argument
 to C<paste()> method
 
 =head2 mech
+
+=for pod_spiffy in object | out object
 
     my $old_mech = $paster->mech;
 
@@ -549,51 +574,43 @@ will use it for pasting.
 Please note that pastebin.ca has a spam protection and will ban you for
 pasting too much. So don't abuse it, ktnx.
 
-=head1 AUTHOR
+=for pod_spiffy hr
 
-Zoffix Znet, C<< <zoffix at cpan.org> >>
-(L<http://zoffix.com>, L<http://haslayout.net>)
+=head1 REPOSITORY
+
+=for pod_spiffy start github section
+
+Fork this module on GitHub:
+L<https://github.com/zoffixznet/WWW-Pastebin-PastebinCa-Create>
+
+=for pod_spiffy end github section
 
 =head1 BUGS
 
-Please report any bugs or feature requests to C<bug-www-pastebin-pastebinca-create at rt.cpan.org>, or through
-the web interface at L<http://rt.cpan.org/NoAuth/ReportBug.html?Queue=WWW-Pastebin-PastebinCa-Create>.  I will be notified, and then you'll
-automatically be notified of progress on your bug as I make changes.
+=for pod_spiffy start bugs section
 
-=head1 SUPPORT
+To report bugs or request features, please use
+L<https://github.com/zoffixznet/WWW-Pastebin-PastebinCa-Create/issues>
 
-You can find documentation for this module with the perldoc command.
+If you can't access GitHub, you can email your request
+to C<bug-www-pastebin-pastebinca-create at rt.cpan.org>
 
-    perldoc WWW::Pastebin::PastebinCa::Create
+=for pod_spiffy end bugs section
 
-You can also look for information at:
+=head1 AUTHOR
 
-=over 4
+=for pod_spiffy start author section
 
-=item * RT: CPAN's request tracker
+=for pod_spiffy author ZOFFIX
 
-L<http://rt.cpan.org/NoAuth/Bugs.html?Dist=WWW-Pastebin-PastebinCa-Create>
+=for text Zoffix Znet <zoffix at cpan.org>
 
-=item * AnnoCPAN: Annotated CPAN documentation
+=for pod_spiffy end author section
 
-L<http://annocpan.org/dist/WWW-Pastebin-PastebinCa-Create>
+=head1 LICENSE
 
-=item * CPAN Ratings
-
-L<http://cpanratings.perl.org/d/WWW-Pastebin-PastebinCa-Create>
-
-=item * Search CPAN
-
-L<http://search.cpan.org/dist/WWW-Pastebin-PastebinCa-Create>
-
-=back
-
-=head1 COPYRIGHT & LICENSE
-
-Copyright 2008 Zoffix Znet, all rights reserved.
-
-This program is free software; you can redistribute it and/or modify it
-under the same terms as Perl itself.
-
+You can use and distribute this module under the same terms as Perl itself.
+See the C<LICENSE> file included in this distribution for complete
+details.
 
 =cut
